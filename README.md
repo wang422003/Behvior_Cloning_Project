@@ -17,13 +17,13 @@ The goals / steps of this project are the following:
 
 [//]: # (Image References)
 
-[image1]: ./examples/placeholder.png "Model Visualization"
-[image2]: ./examples/placeholder.png "Grayscaling"
-[image3]: ./examples/placeholder_small.png "Recovery Image"
-[image4]: ./examples/placeholder_small.png "Recovery Image"
-[image5]: ./examples/placeholder_small.png "Recovery Image"
-[image6]: ./examples/placeholder_small.png "Normal Image"
-[image7]: ./examples/placeholder_small.png "Flipped Image"
+[image1]: ./images/cnn-architecture.png "Model Visualization"
+[image2]: ./images/image2.jpg "Central Image"
+[image3]: ./images/right1.jpg "Recovery Image"
+[image4]: ./images/right2.jpg "Recovery Image"
+[image5]: ./images/right3.jpg "Recovery Image"
+[image6]: ./images/flip1.jpg "Normal Image"
+[image7]: ./images/flip2.jpg "Flipped Image"
 
 ## Rubric Points
 ### Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/432/view) individually and describe how I addressed each point in my implementation.  
@@ -42,7 +42,7 @@ My project includes the following files:
 #### 2. Submission includes functional code
 Using the Udacity provided simulator and my drive.py file, the car can be driven autonomously around the track by executing 
 ```sh
-python drive.py model.h5
+python drive.py modeltry.h5
 ```
 
 #### 3. Submission code is usable and readable
@@ -53,14 +53,14 @@ The model.py file contains the code for training and saving the convolution neur
 
 #### 1. An appropriate model architecture has been employed
 
-My model consists of a convolution neural network from Nvidia.
+My model consists of a convolution neural network from Nvidia.(code line 75-84)
 
-The data is normalized in the model using a Keras lambda layer (code line 18). 
+The data is normalized in the model using a Keras lambda layer (code line 72). 
 
 
 #### 2. Model parameter tuning
 
-The model used an adam optimizer, so the learning rate was not tuned manually (model.py line 25).
+The model used an adam optimizer, so the learning rate was not tuned manually (model.py line 86).
 
 #### 3. Appropriate training data
 
@@ -87,7 +87,18 @@ The final step was to run the simulator to see how well the car was driving arou
 
 #### 2. Final Model Architecture
 
-The final model architecture (model.py lines 18-24) consisted of a convolution neural network with the following layers and layer sizes ...
+The final model architecture (model.py lines 75-84) consisted of a convolution neural network with the following layers and layer sizes:
+Convolution2D(24,5,5)
+Convolution2D(36,5,5)
+Convolution2D(48,5,5)
+Convolution2D(64, 3, 3)
+Convolution2D(64, 3, 3)
+Flatten()
+Dense(100)
+Dense(50)
+Dense(10)
+Dense(1)
+
 
 Here is a visualization of the architecture (note: visualizing the architecture is optional according to the project rubric)
 
@@ -99,7 +110,7 @@ To capture good driving behavior, I first recorded two laps on track one using c
 
 ![alt text][image2]
 
-I then recorded the vehicle recovering from the left side and right sides of the road back to center so that the vehicle would learn to .... These images show what a recovery looks like starting from ... :
+I then recorded the vehicle recovering from the left side and right sides of the road back to center so that the vehicle would learn to drive to the center if it is close to the left or right sides. These images show what a recovery looks like starting from the right side :
 
 ![alt text][image3]
 ![alt text][image4]
@@ -107,16 +118,15 @@ I then recorded the vehicle recovering from the left side and right sides of the
 
 Then I repeated this process on track two in order to get more data points.
 
-To augment the data sat, I also flipped images and angles thinking that this would ... For example, here is an image that has then been flipped:
+To augment the data sat, I also flipped images and angles thinking that this would get anther training dataset from the opposite direction of the original training data. For example, here is an image that has then been flipped:
 
 ![alt text][image6]
 ![alt text][image7]
 
-Etc ....
 
-After the collection process, I had X number of data points. I then preprocessed this data by ...
+After the collection process, I had X number of data points. I then preprocessed this data by normalizing and cropping it to focus on the necessary part of the images.
 
 
-I finally randomly shuffled the data set and put Y% of the data into a validation set. 
+I finally randomly shuffled the data set and put 20% of the data into a validation set. 
 
-I used this training data for training the model. The validation set helped determine if the model was over or under fitting. The ideal number of epochs was Z as evidenced by ... I used an adam optimizer so that manually training the learning rate wasn't necessary.
+I used this training data for training the model. The validation set helped determine if the model was over or under fitting. I used an adam optimizer so that manually training the learning rate wasn't necessary.
