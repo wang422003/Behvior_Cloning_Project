@@ -87,15 +87,25 @@ The final step was to run the simulator to see how well the car was driving arou
 #### 2. Final Model Architecture
 
 The final model architecture (model.py lines 75-84) consisted of a convolution neural network with the following layers and layer sizes:
+
 Convolution2D(24,5,5)
+
 Convolution2D(36,5,5)
+
 Convolution2D(48,5,5)
+
 Convolution2D(64, 3, 3)
+
 Convolution2D(64, 3, 3)
+
 Flatten()
+
 Dense(100)
+
 Dense(50)
+
 Dense(10)
+
 Dense(1)
 
 
